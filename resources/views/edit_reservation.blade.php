@@ -11,6 +11,21 @@
 
     <!-- Styles -->
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <script>
+        function updateCost() {
+            const destinationSelect = document.getElementById('destination');
+            const guestsInput = document.getElementById('no_of_guests');
+            const costInput = document.getElementById('cost');
+
+            const selectedOption = destinationSelect.options[destinationSelect.selectedIndex];
+            const destinationCost = selectedOption ? parseInt(selectedOption.getAttribute('data-cost')) : 0;
+            const numberOfGuests = parseInt(guestsInput.value) || 0;
+
+            const totalCost = destinationCost * numberOfGuests;
+            costInput.value = totalCost || 0; // Set total cost or 0 if invalid
+        }
+    </script>
 </head>
 
 <body>
@@ -36,8 +51,8 @@
                     </div>
                     <div class="col-lg-6">
                         <label for="no_of_guests" class="form-label">Number of Guests</label>
-                        <input type="number" name="no_of_guests" class="form-control"
-                            value="{{ $reservation->no_of_guests }}" required>
+                        <input type="number" name="no_of_guests" id="no_of_guests" class="form-control"
+                            value="{{ $reservation->no_of_guests }}" required onchange="updateCost()">
                     </div>
                     <div class="col-lg-6">
                         <label for="check_in_date" class="form-label">Check-In Date</label>
@@ -47,17 +62,52 @@
                     </div>
                     <div class="col-lg-12">
                         <label for="destination" class="form-label">Destination</label>
-                        <select name="destination" class="form-select" required>
+                        <select name="destination" id="destination" class="form-select" required
+                            onchange="updateCost()">
                             @php
-                                $destinations = ['Delhi', 'Rajasthan', 'Agra', 'Madhya Pradesh', 'Tamil Nadu', 'Himalayas', 'Sundarbans', 'Andaman and Nicobar', 'Kerala', 'Goa', 'Varanasi', 'Amritsar', 'Tirumala', 'Badrinath', 'Dwarka', 'Rameshwaram', 'Jagannath Puri', 'Mumbai', 'Banglore', 'Jaipur', 'Hyderabad'];
+                                $destinations = [
+                                    'Delhi' => 5000,
+                                    'Rajasthan' => 7000,
+                                    'Agra' => 4000,
+                                    'Madhya Pradesh' => 6000,
+                                    'Tamil Nadu' => 5500,
+                                    'Himalayas' => 8000,
+                                    'Sundarbans' => 4500,
+                                    'Andaman and Nicobar' => 10000,
+                                    'Kerala' => 7500,
+                                    'Goa' => 6500,
+                                    'Varanasi' => 5000,
+                                    'Amritsar' => 5500,
+                                    'Tirumala' => 6000,
+                                    'Badrinath' => 7000,
+                                    'Dwarka' => 6500,
+                                    'Rameshwaram' => 6000,
+                                    'Jagannath Puri' => 5500,
+                                    'Mumbai' => 7000,
+                                    'Bangalore' => 6500,
+                                    'Jaipur' => 6000,
+                                    'Hyderabad' => 5500,
+                                ];
                             @endphp
-                            @foreach($destinations as $dest)
-                                <option value="{{ $dest }}" {{ $reservation->destination == $dest ? 'selected' : '' }}>
-                                    {{ $dest }}</option>
+                            @foreach ($destinations as $dest => $cost)
+                                <option value="{{ $dest }}" data-cost="{{ $cost }}" {{ $reservation->destination == $dest ? 'selected' : '' }}>
+                                    {{ $dest }} - ₹{{ number_format($cost, 2) }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-12 text-center mt-4">
+                    <div class="col-lg-12 mt-3">
+                        <label for="cost" class="form-label">Total Cost</label>
+                        <input type="number" id="cost" name="cost" class="form-control" value="{{ $reservation->cost }}"
+                            readonly>
+                    </div>
+
+                    <div class="col-12 text-center d-flex justify-content-end gap-4 mt-4">
+                        <button type="button" class="btn btn-secondary text-white"
+                            onclick="window.location.href='{{ route('my_reservations') }}'">
+                            Cancel
+                        </button>
+
                         <button type="submit" class="btn btn-primary">Update Reservation</button>
                     </div>
                 </div>

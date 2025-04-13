@@ -85,4 +85,18 @@ class ReservationController extends Controller
 
         return view('ticket', compact('reservation'));
     }
+
+    public function remove_reservation($id): RedirectResponse
+    {
+        $reservation = Reservation::findOrFail($id);
+
+        // Ensure only cancelled reservations can be removed
+        if ($reservation->status !== 'cancelled') {
+            return redirect()->route('my_reservations')->with('error', 'Only cancelled reservations can be removed.');
+        }
+
+        $reservation->delete();
+
+        return redirect()->route('my_reservations')->with('success', 'The cancelled reservation has been removed from your account.');
+    }
 }

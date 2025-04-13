@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/owl.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}" />
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 
     <style>
         html,
@@ -198,7 +201,7 @@
                                                     <h5><strong>Destination:</strong> {{ $reservation->destination }}</h5>
                                                     <p><strong>Name:</strong> {{ $reservation->name }}</p>
                                                     <p><strong>Phone:</strong> {{ $reservation->phone }}</p>
-                                                    <p><strong>Guests:</strong> {{ $reservation->no_of_guests }}</p>
+                                                    <p><strong>Persons:</strong> {{ $reservation->no_of_guests }}</p>
                                                     <p><strong>Check-in:</strong>
                                                         {{ \Carbon\Carbon::parse($reservation->check_in_date)->format('d-m-Y') }}</p>
                                                     <p><strong>Cost:</strong> ₹{{ number_format($reservation->cost, 2) }}</p>
@@ -232,13 +235,11 @@
                                                         </form>
                                                     @endif
 
-                                                    @if ($reservation->status !== 'cancelled')
-                                                        <a href="{{ route('edit_reservation', $reservation->id) }}"
-                                                            class="btn btn-primary btn-sm ms-2">Edit</a>
-                                                    @endif
-
 
                                                     @if ($reservation->status === 'pending')
+                                                        <a href="{{ route('edit_reservation', $reservation->id) }}"
+                                                            class="btn btn-primary btn-sm ms-2">Edit</a>
+
                                                         <a href="{{ route('payment.page', $reservation->id) }}"
                                                             class="btn btn-warning btn-sm ms-2">Pay Now</a>
                                                     @endif
@@ -246,6 +247,15 @@
                                                     @if ($reservation->status === 'confirmed')
                                                         <a href="{{ route('view_ticket', $reservation->id) }}"
                                                             class="btn btn-success btn-sm ms-2">View Ticket</a>
+                                                    @endif
+
+                                                    @if ($reservation->status === 'cancelled')
+                                                        <form action="{{ route('remove_reservation', $reservation->id) }}" method="POST" class="d-inline"
+                                                            onsubmit="return confirm('Are you sure you want to remove this reservation from your account?');">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-outline-primary btn-sm ms-2">Remove from Account</button>
+                                                        </form>
                                                     @endif
                                                 </div>
                                             </div>

@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/my_reservations', [ReservationController::class, 'index'])->name('my_reservations');
     Route::post('/new_reservation', [ReservationController::class, 'new_reservation'])->name('new_reservation');
     Route::delete('/reservations/{id}', [ReservationController::class, 'delete_reservation'])->name('delete_reservation'); // Added route
+    Route::delete('/reservations/{id}/remove', [ReservationController::class, 'remove_reservation'])->name('remove_reservation');
     Route::get('/reservations/{id}/edit', [ReservationController::class, 'edit_reservation'])->name('edit_reservation');
     Route::put('/reservations/{id}', [ReservationController::class, 'update_reservation'])->name('update_reservation');
     Route::post('/reservations/{id}/confirm', [PaymentController::class, 'confirm_payment'])->name('confirm_payment');
@@ -74,7 +75,8 @@ Route::middleware('auth')->group(function () {
     Route::post('new_review', [ReviewController::class, 'new_review']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/password', [ProfileController::class, 'updatePassword'])->name('password.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 

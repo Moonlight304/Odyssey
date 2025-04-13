@@ -73,24 +73,23 @@
                     <!-- Update Profile Information Form -->
                     <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                         <div class="max-w-xl">
-                            <form method="PATCH" action="{{ route('profile.update') }}" class="space-y-4">
+                            <form method="POST" action="{{ route('profile.update') }}" class="space-y-4">
                                 @csrf
                                 @method('PUT')
                                 <div style="margin-bottom: 2rem;">
                                     <div class="flex items-center justify-between">
-                                        <label for="name" class="text-lg font-medium text-white">Name</label>
+                                        <label for="name" class="text-lg font-medium text-gray-800 dark:text-white">Name</label>
                                     </div>
                                     <div class="mt-1">
                                         <input id="name" name="name" type="text"
-                                            value="{{ old('name', Auth::user()->first_name . ' ' . Auth::user()->last_name) }}"
-                                            required
+                                            value="{{ old('name', Auth::user()->name) }}" required
                                             class="w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                                     </div>
                                 </div>
 
                                 <div style="margin-bottom: 2rem;">
                                     <div class="flex items-center justify-between">
-                                        <label for="email" class="text-lg font-medium text-white">Email</label>
+                                        <label for="email" class="text-lg font-medium text-gray-800 dark:text-white">Email</label>
                                     </div>
                                     <div class="mt-1">
                                         <input id="email" name="email" type="email"
@@ -115,10 +114,9 @@
                             <form method="POST" action="{{ route('password.update') }}">
                                 @csrf
                                 @method('PUT')
-                                <div class="space-y-6">
+                                <div class="mb-4">
                                     <div class="flex items-center justify-between">
-                                        <label for="current_password" class="text-lg font-medium text-white">Current
-                                            Password</label>
+                                        <label for="current_password" class="text-lg font-medium text-gray-800 dark:text-white">Current Password</label>
                                     </div>
                                     <div class="mt-1">
                                         <input id="current_password" name="current_password" type="password" required
@@ -126,10 +124,9 @@
                                     </div>
                                 </div>
 
-                                <div class="space-y-6">
+                                <div class="mb-4">
                                     <div class="flex items-center justify-between">
-                                        <label for="password" class="text-lg font-medium text-white">New
-                                            Password</label>
+                                        <label for="password" class="text-lg font-medium text-gray-800 dark:text-white">New Password</label>
                                     </div>
                                     <div class="mt-1">
                                         <input id="password" name="password" type="password" required
@@ -137,14 +134,12 @@
                                     </div>
                                 </div>
 
-                                <div class="space-y-6">
+                                <div class="mb-4">
                                     <div class="flex items-center justify-between">
-                                        <label for="password_confirmation"
-                                            class="text-lg font-medium text-white">Confirm New Password</label>
+                                        <label for="password_confirmation" class="text-lg font-medium text-gray-800 dark:text-white">Confirm New Password</label>
                                     </div>
                                     <div class="mt-1">
-                                        <input id="password_confirmation" name="password_confirmation" type="password"
-                                            required
+                                        <input id="password_confirmation" name="password_confirmation" type="password" required
                                             class="w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                                     </div>
                                 </div>
@@ -160,15 +155,13 @@
                     </div>
 
                     <!-- Delete User Form -->
-                    <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                    <!-- <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                         <div class="max-w-xl">
                             <form method="POST" action="{{ route('profile.destroy') }}">
                                 @csrf
                                 @method('DELETE')
                                 <div class="space-y-6">
-                                    <p class="text-sm text-gray-600">Once your account is deleted, all of its resources
-                                        and data will be permanently deleted. Before deleting your account, please
-                                        download any data or information that you wish to retain.</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.</p>
                                 </div>
 
                                 <div class="flex items-center justify-between mt-6">
@@ -179,7 +172,7 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
@@ -188,3 +181,29 @@
 </body>
 
 </html>
+
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #006b6b;
+    box-shadow: 0 0 5px rgba(0, 107, 107, 0.5);
+}
+</style>
