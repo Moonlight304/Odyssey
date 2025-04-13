@@ -1,0 +1,94 @@
+/* General container styling */
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+/* Navigation styling */
+.editNav {
+    background-color: #1A3C40;
+    gap: 15rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: white;
+
+}
+
+/* Logo styling */
+.logo img {
+    width: 200px;
+    /* Adjusted to fit the design, modify as needed */
+    height: auto;
+}
+
+/* Navigation menu styling */
+.ulThing {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.ulThing li {
+    margin: 0 15px;
+}
+
+.ulThing a {
+    color: white;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+
+/* Form button styling for Log Out */
+.ulThing button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+}
+
+.ulThing button:hover {
+    text-decoration: underline;
+}
+
+/* Mobile menu trigger (hidden by default, show on mobile) */
+.menu-trigger {
+    display: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .editNav {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .ulThing {
+        display: none;
+        /* Hidden by default on mobile */
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+
+    .ulThing li {
+        margin: 10px 0;
+    }
+
+    .menu-trigger {
+        display: block;
+    }
+
+    .ulThing.active {
+        display: flex;
+        /* Show menu when active (toggle with JavaScript) */
+    }
+}
