@@ -76,7 +76,7 @@
                             <form method="POST" action="{{ route('profile.update') }}" class="space-y-4">
                                 @csrf
                                 @method('PUT')
-                                <div style="margin-bottom: 2rem;">
+                                <!-- <div style="margin-bottom: 2rem;">
                                     <div class="flex items-center justify-between">
                                         <label for="name" class="text-lg font-medium text-gray-800 dark:text-white">Name</label>
                                     </div>
@@ -85,16 +85,67 @@
                                             value="{{ old('name', Auth::user()->name) }}" required
                                             class="w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                                     </div>
+                                </div> -->
+
+                                <div style="margin-bottom: 2rem">
+                                    <div class="flex items-center justify-between">
+                                        <label for="email"
+                                            class="text-lg font-medium text-gray-800 dark:text-white">Email</label>
+                                    </div>
+                                    <div class="mt-1">
+                                        <input id="email" name="email" type="email"
+                                            value="{{ old('email', Auth::user()->email) }}"
+                                            class="w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                            readonly>
+                                    </div>
                                 </div>
 
                                 <div style="margin-bottom: 2rem;">
                                     <div class="flex items-center justify-between">
-                                        <label for="email" class="text-lg font-medium text-gray-800 dark:text-white">Email</label>
+                                        <label for="first_name"
+                                            class="text-lg font-medium text-gray-800 dark:text-white"> Name
+                                        </label>
+                                    </div>
+
+                                    <div class="flex gap-4">
+                                        <div class="mt-1">
+                                            <input id="first_name" name="first_name" type="text"
+                                                value="{{ old('first_name', Auth::user()->first_name) }}" required
+                                                class="w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                                placeholder="First Name">
+                                        </div>
+
+                                        <div class="mt-1">
+                                            <input id="last_name" name="last_name" type="text"
+                                                value="{{ old('last_name', Auth::user()->last_name) }}"
+                                                class="w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                                placeholder="Last Name(optional)">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div style="margin-bottom: 2rem">
+                                    <div class="flex items-center justify-between">
+                                        <label for="address"
+                                            class="text-lg font-medium text-gray-800 dark:text-white">Address</label>
                                     </div>
                                     <div class="mt-1">
-                                        <input id="email" name="email" type="email"
-                                            value="{{ old('email', Auth::user()->email) }}" required
-                                            class="w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                        <input id="address" name="address" type="text"
+                                            value="{{ old('address', Auth::user()->address) }}"
+                                            class="w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-bottom: 2rem">
+                                    <div class="flex items-center justify-between">
+                                        <label for="phone"
+                                            class="text-lg font-medium text-gray-800 dark:text-white"> Phone </label>
+                                    </div>
+                                    <div class="mt-1">
+                                        <input id="phone" name="phone" type="text"
+                                            value="{{ old('phone', Auth::user()->phone) }}"
+                                            class="w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
                                     </div>
                                 </div>
 
@@ -116,7 +167,9 @@
                                 @method('PUT')
                                 <div class="mb-4">
                                     <div class="flex items-center justify-between">
-                                        <label for="current_password" class="text-lg font-medium text-gray-800 dark:text-white">Current Password</label>
+                                        <label for="current_password"
+                                            class="text-lg font-medium text-gray-800 dark:text-white">Current
+                                            Password</label>
                                     </div>
                                     <div class="mt-1">
                                         <input id="current_password" name="current_password" type="password" required
@@ -126,7 +179,9 @@
 
                                 <div class="mb-4">
                                     <div class="flex items-center justify-between">
-                                        <label for="password" class="text-lg font-medium text-gray-800 dark:text-white">New Password</label>
+                                        <label for="password"
+                                            class="text-lg font-medium text-gray-800 dark:text-white">New
+                                            Password</label>
                                     </div>
                                     <div class="mt-1">
                                         <input id="password" name="password" type="password" required
@@ -136,10 +191,13 @@
 
                                 <div class="mb-4">
                                     <div class="flex items-center justify-between">
-                                        <label for="password_confirmation" class="text-lg font-medium text-gray-800 dark:text-white">Confirm New Password</label>
+                                        <label for="password_confirmation"
+                                            class="text-lg font-medium text-gray-800 dark:text-white">Confirm New
+                                            Password</label>
                                     </div>
                                     <div class="mt-1">
-                                        <input id="password_confirmation" name="password_confirmation" type="password" required
+                                        <input id="password_confirmation" name="password_confirmation" type="password"
+                                            required
                                             class="w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                                     </div>
                                 </div>
@@ -183,27 +241,27 @@
 </html>
 
 <style>
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
-}
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+    }
 
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
 
-input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 16px;
-}
+    input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 16px;
+    }
 
-input:focus {
-    outline: none;
-    border-color: #006b6b;
-    box-shadow: 0 0 5px rgba(0, 107, 107, 0.5);
-}
+    input:focus {
+        outline: none;
+        border-color: #006b6b;
+        box-shadow: 0 0 5px rgba(0, 107, 107, 0.5);
+    }
 </style>

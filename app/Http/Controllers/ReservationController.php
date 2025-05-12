@@ -67,6 +67,7 @@ class ReservationController extends Controller
             'no_of_guests' => 'required|numeric',
             'check_in_date' => 'required|date|after:today',
             'destination' => 'required|string',
+            'cost' => 'required|numeric'
         ]);
 
         $reservation->update($validated);

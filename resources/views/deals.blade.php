@@ -59,7 +59,7 @@ https://templatemo.com/tm-580-woox-travel
         </div>
     </div>
 
-    <div class="search-form">
+    <!-- <div class="search-form">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -120,7 +120,7 @@ https://templatemo.com/tm-580-woox-travel
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="amazing-deals">
         <div class="container">

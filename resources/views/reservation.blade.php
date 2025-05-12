@@ -95,15 +95,18 @@
                 <div class="row g-3">
                     <div class="col-lg-6">
                         <label for="name" class="form-label">Your Name</label>
-                        <input type="text" name="name" class="form-control" placeholder="Ex. Priya Iyer" required>
+                        <input value="{{ old('first_name', Auth::user()->first_name . ' ' . Auth::user()->last_name) }}"
+                            type="text" name="name" class="form-control" placeholder="Ex. Priya Iyer" required>
                     </div>
                     <div class="col-lg-6">
                         <label for="phone" class="form-label">Phone Number</label>
-                        <input type="text" name="phone" class="form-control" placeholder="Ex. +91 xxxxxxxxxx" required>
+                        <input value="{{ old('phone', Auth::user()->phone) }}" type="text" name="phone"
+                            class="form-control" placeholder="Ex. +91 xxxxxxxxxx" required>
                     </div>
                     <div class="col-lg-6">
                         <label for="no_of_guests" class="form-label">Number of Persons</label>
-                        <input type="number" name="no_of_guests" id="no_of_guests" class="form-control" required onchange="updateCost()">
+                        <input type="number" name="no_of_guests" id="no_of_guests" class="form-control" required
+                            onchange="updateCost()" min="0">
                     </div>
                     <div class="col-lg-6">
                         <label for="check_in_date" class="form-label">Check-In Date</label>
@@ -141,7 +144,8 @@
                                 ];
                             @endphp
                             @foreach ($destinations as $dest => $cost)
-                                <option value="{{ $dest  }}" data-cost="{{ $cost }}">{{ $dest }} - ₹{{ number_format($cost, 2) }} </option>
+                                <option value="{{ $dest  }}" data-cost="{{ $cost }}">{{ $dest }} -
+                                    ₹{{ number_format($cost, 2) }} </option>
                             @endforeach
                         </select>
                     </div>
